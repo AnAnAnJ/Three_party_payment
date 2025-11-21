@@ -12,7 +12,9 @@
 """
 import json
 import requests
-import pytest
+
+from config.get_yaml_data import get_yaml_datas
+
 
 class Test_Query_goods():
 
@@ -26,7 +28,7 @@ class Test_Query_goods():
         if self.Project == "viva":
             uri = f"/v1/auth?type=device_quick"
             try:
-                res = requests.post(url=self.viva_host_url + uri,
+                res = requests.post(url= get_yaml_datas(f"/url_config.yaml", "url_config", "viva","staging") + uri,
                                     headers={
                                                 'Z-App-Info': 'bundle_id=com.swerlzenfigmaderlas.swerl;version=1.3.0;build=13',
                                                 'Z-Client-Id': '4886037297291990',
@@ -91,5 +93,5 @@ class Test_Query_goods():
 
 if __name__ == '__main__':
     Test_Query_goods().test_login()
-    Test_Query_goods().test_goods()
+    # Test_Query_goods().test_goods()
 

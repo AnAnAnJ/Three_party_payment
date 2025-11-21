@@ -11,9 +11,8 @@ import requests
 class Test_Query_admin_data():
 
     def read_mysql(db,sql):
-        # 建立数据库连接
         try:
-            connect = pymysql.connect(host='11', port="11",user='1',passwd='', charset='utf8', db=db)
+            connect = pymysql.connect()  #host='11', port="11",user='1',passwd='', charset='utf8', db=db
         except Exception as e:
             print('连接数据库错误，错误是%s' % e)
         else:
