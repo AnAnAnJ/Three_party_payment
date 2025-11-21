@@ -9,3 +9,4 @@ logs
 .vscode
 /.bmad-core/
 /.claude/
+/.codex/

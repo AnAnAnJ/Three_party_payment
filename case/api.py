@@ -21,8 +21,8 @@ def create_items(item_list: ItemList):
     processed_items = []
     for item in item_list.items:
         if item.bundle_id == "com.Drift.cf.ios":
-            Test_Query_goods().test_viva_login()
-            Test_Query_goods().test_viva_goods()
+            Test_Query_goods().test_login()
+            Test_Query_goods().test_goods()
             processed_items.append(item)
 
     return {
