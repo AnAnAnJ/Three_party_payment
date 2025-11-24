@@ -15,8 +15,6 @@ def read_yaml_file(filename):
     return yaml_file
 
 
-
-
 def get_yaml_datas(filename, data, group, case):
     # 获取当前脚本所在目录
     root_path = pathlib.Path(__file__).parent.absolute()
@@ -32,4 +30,4 @@ def get_yaml_datas(filename, data, group, case):
 
 if __name__ == '__main__':
     # Example usage
-    print(get_yaml_datas("./util/url_config.yaml", "url_config", "Viva", "staging"))
+    print(get_yaml_datas("./func/url_config.yaml", "url_config", "Viva", "staging"))

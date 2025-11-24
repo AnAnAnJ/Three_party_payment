@@ -6,7 +6,10 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 from typing import List
-from test_query_goods import Test_Query_goods
+
+from case.test_admin_search import TestSearchValue
+from case.test_api_query_goods import Test_API_Query_goods
+from test_api_query_goods import Test_API_Query_goods
 
 app = FastAPI()
 class Item(BaseModel):
@@ -21,8 +24,8 @@ def create_items(item_list: ItemList):
     processed_items = []
     for item in item_list.items:
         if item.bundle_id == "com.Drift.cf.ios":
-            Test_Query_goods().test_login()
-            Test_Query_goods().test_goods()
+            TestSearchValue()
+            Test_API_Query_goods()
             processed_items.append(item)
 
     return {

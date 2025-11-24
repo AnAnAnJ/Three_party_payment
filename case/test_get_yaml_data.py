@@ -1,4 +1,4 @@
-from config.get_yaml_data import get_config_value, get_first_value
+from lib.get_yaml_data import get_config_value, get_first_value
 
 
 def test_get_full_config_returns_list():

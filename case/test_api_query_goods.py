@@ -13,10 +13,10 @@
 import json
 import requests
 
-from config.get_yaml_data import get_yaml_datas
+from lib.get_yaml_data import get_yaml_datas
 
 
-class Test_Query_goods():
+class Test_API_Query_goods():
 
     page_name = "Drift"
     Project = "viva"
@@ -49,13 +49,14 @@ class Test_Query_goods():
                         print(f"Request failed: {e}")
                         raise
         elif self.Project == "joymeet":
+            #待确认joy meet项目登录方式
             print("joymeet项目")
         else:
             print("未查询到项目名称，请检查配置是否存在当前内容")
 
 
     #查询商品
-    def test_goods(self):
+    def test_api_goods(self):
         if self.Project == "viva":
             uri = f"/v1/trades/goods?type=coin"
             try:
@@ -74,14 +75,7 @@ class Test_Query_goods():
                                     timeout=40)
                 assert res.status_code == 200
                 data = res.json()
-                print(json.dumps(data, indent=2, ensure_ascii=False))
-                # # 判断data下所有商品都有payment 字段 有调用H5页面 并截图
-                # if (all(item.get('payment') for item in data)) == True:
-                #     #调用H5页面 并截图
-                #     return f"✅三方支付接口返回的数据是：{data}"
-                # else:
-                #     #调用H5页面 并截图
-                #     return f"⚠️三方支付接口返回异常{data}"
+                return json.dumps(data, indent=2, ensure_ascii=False)
             except Exception as e:
                 print(f"Request failed: {e}")
                 raise
@@ -92,6 +86,6 @@ class Test_Query_goods():
 
 
 if __name__ == '__main__':
-    Test_Query_goods().test_login()
-    # Test_Query_goods().test_goods()
+    Test_API_Query_goods().test_login()
+    # Test_Query_goods().test_api_goods()
 
