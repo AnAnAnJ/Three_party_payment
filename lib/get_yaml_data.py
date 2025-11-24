@@ -15,6 +15,8 @@ def read_yaml_file(filename):
     return yaml_file
 
 
+
+
 def get_yaml_datas(filename, data, group, case):
     # 获取当前脚本所在目录
     root_path = pathlib.Path(__file__).parent.absolute()

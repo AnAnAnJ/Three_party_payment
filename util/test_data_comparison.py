@@ -5,8 +5,8 @@
     异常  - 部分信息匹配
     失败  - 全部不匹配
 """
-from case.test_admin_search import TestSearchValue
-from case.test_api_query_goods import Test_API_Query_goods
+from util.test_admin_search import TestSearchValue
+from util.test_api_query_goods import Test_API_Query_goods
 
 
 class Test_Data_Comparison():

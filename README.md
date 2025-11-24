@@ -9,8 +9,8 @@
 ## 快速开始
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+source .venv/bin/activate3
+pip install -r requirements.txt  #pip3 freeze > requirements.txt
 ```
 
 ## 目录结构

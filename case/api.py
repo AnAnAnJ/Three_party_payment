@@ -2,14 +2,12 @@
 -  给出api调用的接口
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Optional
 from typing import List
 
-from case.test_admin_search import TestSearchValue
-from case.test_api_query_goods import Test_API_Query_goods
-from test_api_query_goods import Test_API_Query_goods
+from util.test_admin_search import TestSearchValue
+from util.test_api_query_goods import Test_API_Query_goods
 
 app = FastAPI()
 class Item(BaseModel):
