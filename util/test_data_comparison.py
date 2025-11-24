@@ -13,11 +13,6 @@ from util.test_admin_search import TestSearchValue
 from util.test_api_query_goods import Test_API_Query_goods
 import json
 
-
-from util.test_admin_search import TestSearchValue
-from util.test_api_query_goods import Test_API_Query_goods
-
-
 class Test_Data_Comparison:
 
     def test_data_comparison(self):
