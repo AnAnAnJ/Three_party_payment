@@ -16,17 +16,24 @@ def read_yaml_file(filename):
     return yaml_file
 
 #获取yaml文件的路径，并读取测试用例数据
-def get_yaml_datas(filename,data,case):
+def get_yaml_datas(filename,*args):
     #读取当前路径
     root_path = os.path.dirname(os.path.abspath(__file__))
     #读取yaml文件路径
     yaml_path = os.sep.join([root_path,'..',filename])
     yaml_data = read_yaml_file(yaml_path)
-    values = yaml_data.get(data).get(case).get('staging')
-    # ids = yaml_data.get(data).get(case).get('ids')
-    return values
+    data = yaml_data
+    for key in args:
+        if isinstance(data, dict):
+            data = data.get(key)
+        else:
+            return None
+        if data is None:
+            return None
+    return data
 
 
 if __name__ == '__main__':
-    print(get_yaml_datas("func/url_config.yaml","url","Viva"))
+    print(get_yaml_datas("func/url_config.yaml", "url", "Viva", "staging"))
+
 

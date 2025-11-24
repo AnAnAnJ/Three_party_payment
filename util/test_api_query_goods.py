@@ -20,15 +20,13 @@ class Test_API_Query_goods():
 
     page_name = "Drift"
     Project = "viva"
-    viva_host_url = "https://staging-api.vivaaaa.com"
-
 
     # 登录
     def test_login(self):
         if self.Project == "viva":
             uri = f"/v1/auth?type=device_quick"
             try:
-                res = requests.post(url= get_yaml_datas(f"/url_config.yaml", "url_config", "viva","staging") + uri,
+                res = requests.post(url= get_yaml_datas("func/url_config.yaml","url","Viva","staging") + uri,
                                     headers={
                                                 'Z-App-Info': 'bundle_id=com.swerlzenfigmaderlas.swerl;version=1.3.0;build=13',
                                                 'Z-Client-Id': '4886037297291990',
@@ -60,7 +58,7 @@ class Test_API_Query_goods():
         if self.Project == "viva":
             uri = f"/v1/trades/goods?type=coin"
             try:
-                res = requests.get(url=self.viva_host_url + uri,
+                res = requests.get(url=get_yaml_datas("func/url_config.yaml","url","Viva","staging") + uri,
                                    headers={
                                                 'Z-App-Info': 'bundle_id=com.swerlzenfigmaderlas.swerl;version=1.3.0;build=13',
                                                 'Z-Auth-Token': self.test_login(),
