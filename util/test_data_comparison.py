@@ -1,10 +1,4 @@
-"""
- - 对比api查询出来的三方支付商品信息与admin配置是否一致
-    test_admin_goods  -- > test_api_goods
-    成功  - 全部信息匹配
-    异常  - 部分信息匹配
-    失败  - 全部不匹配
-"""
+
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -16,126 +10,33 @@ import json
 class Test_Data_Comparison:
 
     def test_data_comparison(self):
+        """
+        - 对比api查询出来的三方支付商品信息与admin配置是否一致
+            test_admin_goods  -- > test_api_goods
+            成功  - 全部信息匹配
+            异常  - 部分信息匹配
+            失败  - 全部不匹配
+        :return: 对比数据的结果信息
+        """
 
         admin_goods_res = """{
           "com.swerlzenfigmaderlas.swerl.gems.120_normal": [
             {
               "name": "Apple Pay",
               "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "onerway_card"
-            }
-          ],
-          "com.swerlzenfigmaderlas.swerl.gems.670_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "onerway_card"
-            }
-          ],
-          "com.swerlzenfigmaderlas.swerl.gems.1400_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "onerway_card"
-            }
-          ],
-          "com.swerlzenfigmaderlas.swerl.gems.2200_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "onerway_card"
-            }
-          ],
-          "com.swerlzenfigmaderlas.swerl.gems.4000_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "onerway_card"
-            }
-          ],
-          "com.swerlzenfigmaderlas.swerl.gems.6000_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "onerway_card"
-            }
-          ],
-          "com.swerlzenfigmaderlas.swerl.gems.9000_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "onerway_card"
             }
           ]
         }"""
-
         api_goods_res = """{
           "com.swerlzenfigmaderlas.swerl.gems.120_normal": [
             {
               "name": "Apple Pay",
               "platform": "onerway_apple_pay"
             }
-          ],
-          "com.swerlzenfigmaderlas.swerl.gems.440_normal": [
+          ],"com.swerlzenfigmaderlas.swerl.gems.220_normal": [
             {
               "name": "Apple Pay",
               "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "onerway_card"
-            }
-          ],
-    
-          "com.swerlzenfigmaderlas.swerl.gems.1400_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "revenuecat"
-            }
-          ],
-          "com.swerlzenfigmaderlas.swerl.gems.2200_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "revenuecat"
-            }
-          ],
-          "com.swerlzenfigmaderlas.swerl.gems.9000_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            },
-            {
-              "name": "Credit Card",
-              "platform": "onerway_card"
             }
           ]
         }"""
@@ -186,7 +87,7 @@ class Test_Data_Comparison:
                     )
 
         if not messages:
-            result = "\n✅ 三方支付数据无异常, api返回数据与admin配置一致"
+            result = "✅ 三方支付数据无异常, api返回数据与admin配置一致"
         else:
             result = "\n" + "\n".join(messages)
 

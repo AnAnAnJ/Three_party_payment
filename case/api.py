@@ -8,10 +8,10 @@ from typing import List
 
 from util.test_admin_search import TestSearchValue
 from util.test_api_query_goods import Test_API_Query_goods
+from util.test_data_comparison import Test_Data_Comparison
 
 app = FastAPI()
 class Item(BaseModel):
-    page_name: str
     bundle_id: str
 
 class ItemList(BaseModel):
@@ -26,12 +26,19 @@ def create_items(item_list: ItemList):
             Test_API_Query_goods()
             processed_items.append(item)
 
-    return {
-        "status": "success",
-        "received_data": item_list.items,
-        "data": "api下发数据配置与admin配置 返回对比数据一致，有异常返回对应那个商品无三方支付",
-        "message": f"✅三方支付接口返回数据无异常",
-    }
+    if  Test_Data_Comparison().test_data_comparison() == "✅ 三方支付数据无异常, api返回数据与admin配置一致":
+        return {
+            "status": "success",
+            "received_data": item_list.items,
+            "message": f"✅三方支付接口返回数据无异常",
+        }
+    else:
+        return {
+            "status": "fail",
+            "received_data": item_list.items,
+            "data": Test_Data_Comparison().test_data_comparison(),
+            "message": f"⚠️三方支付接口返回数据有异常"
+        }
 
 
 
