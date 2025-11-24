@@ -4,18 +4,22 @@ from lib.test_sql import Test_Query_admin_data
 
 class TestSearchValue:
 
-    def test_search_value(self,bundle_id):
+    project = "viva"
+    bundle_id = "com.swerlzenfigmaderlas.swerl"
+    page_name = "Swert"
+
+    def test_search_value(self):
         """
         1、查询joy happier数据库信息，根据bundle_id 查询 对应的项目名称（viva / joy meet） 和 包名
         :return:项目名称 / 包名
         """
         sql  = Test_Query_admin_data()
         #待维护对应的项目名称 / 包名 sql  https://admin.joyhappier.com/app_package
-        res = sql.read_mysql("admin",f"待维护{bundle_id}")
+        res = sql.read_mysql("admin",f"待维护{self.bundle_id}")
         return res  #返回项目名称 / 包名
 
 
-    def test_admin_goods(self,project,page_name):
+    def test_admin_goods(self):
         """
         1、根据项目区分查询api
             - 项目等于 viva 查询数据库库为 ： XXXX
@@ -25,14 +29,14 @@ class TestSearchValue:
         :return: 商品id 对应的支付名称及平台信息
         """
         try:
-            if project == "viva":
+            if self.project == "viva":
                 sql  = Test_Query_admin_data()
-                res = sql.read_mysql(f"待维护{page_name}")
+                res = sql.read_mysql(f"待维护{ self.page_name}")
                 return res
 
-            elif project == "joy meet":
+            elif self.project == "joy meet":
                 sql  = Test_Query_admin_data()
-                res = sql.read_mysql(f"待维护{page_name}")
+                res = sql.read_mysql(f"待维护{self.page_name}")
                 return res
             else:
                 print("未查询到项目名称，请检查配置是否存在当前内容")

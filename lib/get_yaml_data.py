@@ -87,8 +87,6 @@ if __name__ == '__main__':
     Z_App_Info = f'bundle_id=com.swerlzenfigmaderlas.swerl;version=1.3.0;build=13'
     Z_Auth_Token = "123456"
 
-    # print(get_yaml_datas_str("func/url_config.yaml", "url", "Viva", "staging"))
-    # 使用关键字参数传递，会自动转换 key
     print(get_yaml_dict_value("func/url_config.yaml", "Viva_headers", Z_User_Agent, Z_Auth_Token=Z_Auth_Token))
 
 
