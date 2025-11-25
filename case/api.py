@@ -32,14 +32,19 @@ def create_items(item_list: ItemList):
             "received_data": item_list.items,
             "message": f"✅三方支付接口返回数据无异常",
         }
-    else:
+    elif Test_Data_Comparison().test_data_comparison() != "✅ 三方支付数据无异常, api返回数据与admin配置一致":
         return {
             "status": "fail",
             "received_data": item_list.items,
             "data": Test_Data_Comparison().test_data_comparison(),
             "message": f"⚠️三方支付接口返回数据有异常"
         }
-
+    else:
+        return {
+            "status": "fail",
+            "received_data": item_list.items,
+            "message": f"⚠️数据有异常"
+        }
 
 
 #  http://127.0.0.1:4567/docs
