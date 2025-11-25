@@ -1,24 +1,24 @@
-from sqlite3.dbapi2 import apilevel
 
-# Removed circular import
 
 class TestSearchValue:
-
     def __init__(self, bundle_id=None):
         self.bundle_id = bundle_id
 
     def test_admin_search(self):
         bundle_id_list = ["com.Drift.cf.ios", "com.swerlzenfigmaderlas.swerl", "com.Drift111.cf.ios"]
-        bundle_ids = self.bundle_id or []
 
-        for i in bundle_id_list:
-            for j in bundle_ids:
-                if i == j:
-                    project = "viva"
-                    bundle_id = bundle_ids
-                    page_name = "Swert"
-                    print("--------")
-                    return project, bundle_id, page_name
+        if self.bundle_id is None:
+            print("未查询到bundle_id，请检查配置是否存在当前内容")
+            return "unknown_project", "unknown_bundle", "unknown_page"
+
+        bundle_ids = self.bundle_id if isinstance(self.bundle_id, list) else [self.bundle_id]
+
+        for bundle_id in bundle_ids:
+            if bundle_id in bundle_id_list:
+                project = "viva"
+                page_name = "Swert"
+                return project, bundle_id, page_name
+
         return "unknown_project", "unknown_bundle", "unknown_page"
 
     # def test_search_value(self):

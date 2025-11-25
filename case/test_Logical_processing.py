@@ -6,37 +6,19 @@ from util.test_admin_search import TestSearchValue
 from util.test_api_query_goods import TestApiQueryGoods
 from util.test_data_comparison import TestDataComparison
 
-import logging
 
-app = FastAPI()
-class Item(BaseModel):
-    bundle_id: str
+class Logical_processing:
 
-class ItemList(BaseModel):
-    items: List[Item]
-
-@app.post("/third_party_payment")
-def create_items(item_list: ItemList):
-
-    results = []
-
-    # 遍历所有传入的项目
-    for item in item_list.items:
-        # 提取 bundle_id 值
-        bundle_id = item.bundle_id
-        # 将bundle_id设置为TestSearchValue的类属性，这样其他地方调用时不需要传递参数
-        TestSearchValue.bundle_id = bundle_id
-        # return bundle_id
+    def create_items():
 
         try:
-
-            test_instance = TestSearchValue(bundle_id)
+            tance = TestSearchValue(bundle_id)
+            TestSearchValue()
             test_instance.test_admin_search()
             print(f"TestSearchValue{test_instance}")
 
-            api_goods = TestApiQueryGoods()
-            api_goods.test_login()
-            api_goods.test_api_goods()
+            TestApiQueryGoods().test_login()
+            TestApiQueryGoods().test_api_goods()
             print("TestApiQueryGoods")
 
             comparison_result = TestDataComparison().test_data_comparison()
@@ -59,15 +41,8 @@ def create_items(item_list: ItemList):
 
     # 返回总体处理结果
     success_count = sum(1 for r in results if r["status"] == "success")
-    logging.info(f"Processed {len(results)} items, {success_count} succeeded.")
     return {
         "total_processed": len(results),
         "successful_processes": success_count,
         "results": results
     }
-
-
-#http://127.0.0.1:4567/docs#
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=4567)

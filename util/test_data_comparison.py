@@ -30,6 +30,7 @@ class TestDataComparison:
       ]
     }"""
 
+    # admin_goods_res = TestApiQueryGoods().test_admin_goods()
     # api_goods_res = TestApiQueryGoods().test_api_goods()
 
 
@@ -44,7 +45,6 @@ class TestDataComparison:
         api_json = json.loads(self.api_goods_res)
 
         messages = []
-
         admin_ids = set(admin_json.keys())
         api_ids = set(api_json.keys())
 
