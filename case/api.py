@@ -18,7 +18,7 @@ class ItemList(BaseModel):
     items: List[Item]
 
 @app.post("/third_party_payment")
-def create_items(item_list: ItemList):
+def test_create_items(item_list: ItemList):
     processed_items = []
     for item in item_list.items:
         if item.bundle_id == "com.Drift.cf.ios":
