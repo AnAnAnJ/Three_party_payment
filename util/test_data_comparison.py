@@ -4,10 +4,10 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from util.test_admin_search import TestSearchValue
-from util.test_api_query_goods import Test_API_Query_goods
+from util.test_api_query_goods import TestApiQueryGoods
 import json
 
-class Test_Data_Comparison:
+class TestDataComparison:
 
     def test_data_comparison(self):
         """
@@ -27,25 +27,25 @@ class Test_Data_Comparison:
             }
           ]
         }"""
-        api_goods_res = """{
-          "com.swerlzenfigmaderlas.swerl.gems.120_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            }
-          ],"com.swerlzenfigmaderlas.swerl.gems.220_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            }
-          ]
-        }"""
+        # api_goods_res = """{
+        #   "com.swerlzenfigmaderlas.swerl.gems.120_normal": [
+        #     {
+        #       "name": "Apple Pay",
+        #       "platform": "onerway_apple_pay"
+        #     }
+        #   ],"com.swerlzenfigmaderlas.swerl.gems.220_normal": [
+        #     {
+        #       "name": "Apple Pay",
+        #       "platform": "onerway_apple_pay"
+        #     }
+        #   ]
+        # }"""
 
         # admin_goods_res = TestSearchValue().test_admin_goods()
         # api_goods_res = Test_API_Query_goods().test_api_goods()
 
         admin_json = json.loads(admin_goods_res)
-        api_json = json.loads(api_goods_res)
+        api_json = json.loads(TestApiQueryGoods().test_api_goods())
 
         messages = []
 

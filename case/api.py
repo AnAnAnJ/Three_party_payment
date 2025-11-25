@@ -7,8 +7,8 @@ from pydantic import BaseModel
 from typing import List
 
 from util.test_admin_search import TestSearchValue
-from util.test_api_query_goods import Test_API_Query_goods
-from util.test_data_comparison import Test_Data_Comparison
+from util.test_api_query_goods import TestApiQueryGoods
+from util.test_data_comparison import TestDataComparison
 
 app = FastAPI()
 class Item(BaseModel):
@@ -18,33 +18,29 @@ class ItemList(BaseModel):
     items: List[Item]
 
 @app.post("/third_party_payment")
-def test_create_items(item_list: ItemList):
+def create_items(item_list: ItemList):
     processed_items = []
     for item in item_list.items:
         if item.bundle_id == "com.Drift.cf.ios":
-            TestSearchValue()
-            Test_API_Query_goods()
+            print("数据")
+            # TestSearchValue()
+            # TestApiQueryGoods()
             processed_items.append(item)
 
-    if  Test_Data_Comparison().test_data_comparison() == "✅ 三方支付数据无异常, api返回数据与admin配置一致":
+    if  TestDataComparison().test_data_comparison() == "✅ 三方支付数据无异常, api返回数据与admin配置一致":
         return {
             "status": "success",
             "received_data": item_list.items,
             "message": f"✅三方支付接口返回数据无异常",
         }
-    elif Test_Data_Comparison().test_data_comparison() != "✅ 三方支付数据无异常, api返回数据与admin配置一致":
-        return {
-            "status": "fail",
-            "received_data": item_list.items,
-            "data": Test_Data_Comparison().test_data_comparison(),
-            "message": f"⚠️三方支付接口返回数据有异常"
-        }
     else:
         return {
             "status": "fail",
             "received_data": item_list.items,
-            "message": f"⚠️数据有异常"
+            "data": TestDataComparison().test_data_comparison(),
+            "message": f"⚠️三方支付接口返回数据有异常"
         }
+
 
 
 #  http://127.0.0.1:4567/docs

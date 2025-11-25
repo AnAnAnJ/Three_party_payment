@@ -14,15 +14,17 @@ import json
 import requests
 
 from lib.get_yaml_data import get_yaml_datas_str, get_yaml_dict_value
+from util.test_admin_search import TestSearchValue
 
 
-class Test_API_Query_goods():
+class TestApiQueryGoods(TestSearchValue):
 
-    project = "viva"
-    page_name = "Swert"
-    bundle_id = "com.swerlzenfigmaderlas.swerl"
-    Z_App_Info = f'bundle_id={bundle_id};version=1.3.0;build=13'
-    Z_User_Agent = f"Z-User-Agent: '{page_name}/1.2.0 iOS/18.6.2 (iPhone 14)'"
+    project = TestSearchValue().test_admin_search()[0]
+    page_name = TestSearchValue().test_admin_search()[1]
+    bundle_id = TestSearchValue().test_admin_search()[2]
+    # 在初始化时设置这些变量
+    Z_App_Info = f'bundle_id={bundle_id};version=1.3.0;build=13' if bundle_id else ""
+    Z_User_Agent = f"Z-User-Agent: '{page_name}/1.2.0 iOS/18.6.2 (iPhone 14)'" if page_name else ""
 
     # 登录
     def test_login(self):
@@ -84,5 +86,5 @@ class Test_API_Query_goods():
 
 
 if __name__ == '__main__':
-    Test_API_Query_goods().test_login()
-    Test_API_Query_goods().test_api_goods()
+    TestApiQueryGoods().test_login()
+    TestApiQueryGoods().test_api_goods()
