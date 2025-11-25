@@ -1,20 +1,25 @@
+from sqlite3.dbapi2 import apilevel
 
-from lib.test_sql import Test_Query_admin_data
-from case.api import create_items
-
+# Removed circular import
 
 class TestSearchValue:
 
-
-    # create_data = create_items()
-
+    def __init__(self, bundle_id=None):
+        self.bundle_id = bundle_id
 
     def test_admin_search(self):
-        project = "viva"
-        bundle_id = "com.swerlzenfigmaderlas.swerl"
-        page_name = "Swert"
-        return project,bundle_id,page_name
+        bundle_id_list = ["com.Drift.cf.ios", "com.swerlzenfigmaderlas.swerl", "com.Drift111.cf.ios"]
+        bundle_ids = self.bundle_id or []
 
+        for i in bundle_id_list:
+            for j in bundle_ids:
+                if i == j:
+                    project = "viva"
+                    bundle_id = bundle_ids
+                    page_name = "Swert"
+                    print("--------")
+                    return project, bundle_id, page_name
+        return "unknown_project", "unknown_bundle", "unknown_page"
 
     # def test_search_value(self):
     #     """
@@ -36,14 +41,13 @@ class TestSearchValue:
     #             - 根据项目昵称获取对应项目的商品信息及所有的支付方式
     #     :return: 商品id 对应的支付名称及平台信息
     #     """
-    #     test_search_value = TestSearchValue()
     #     try:
-    #         if test_search_value[1] == "viva":
+    #         if project == "viva":
     #             sql  = Test_Query_admin_data()
     #             res = sql.read_mysql(f"待维护{ self.page_name}")
     #             return res
     #
-    #         elif self.project == "joy meet":
+    #         elif project  == "joy meet":
     #             sql  = Test_Query_admin_data()
     #             res = sql.read_mysql(f"待维护{self.page_name}")
     #             return res

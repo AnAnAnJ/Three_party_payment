@@ -1,51 +1,47 @@
-
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from util.test_admin_search import TestSearchValue
 from util.test_api_query_goods import TestApiQueryGoods
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import json
 
 class TestDataComparison:
 
+    admin_goods_res = """{
+      "com.swerlzenfigmaderlas.swerl.gems.120_normal": [
+        {
+          "name": "Apple Pay",
+          "platform": "onerway_apple_pay"
+        }
+      ]
+    }"""
+    api_goods_res = """{
+      "com.swerlzenfigmaderlas.swerl.gems.120_normal": [
+        {
+          "name": "Apple Pay",
+          "platform": "onerway_apple_pay"
+        }
+      ],"com.swerlzenfigmaderlas.swerl.gems.220_normal": [
+        {
+          "name": "Apple Pay",
+          "platform": "onerway_apple_pay"
+        }
+      ]
+    }"""
+
+    # api_goods_res = TestApiQueryGoods().test_api_goods()
+
+
     def test_data_comparison(self):
         """
-        - 对比api查询出来的三方支付商品信息与admin配置是否一致
-            test_admin_goods  -- > test_api_goods
-            成功  - 全部信息匹配
-            异常  - 部分信息匹配
-            失败  - 全部不匹配
-        :return: 对比数据的结果信息
+        对单个项目进行数据对比
+            :param admin_data: 管理端配置数据
+            :param api_data: API查询数据
+            :return: 对比结果
         """
-
-        admin_goods_res = """{
-          "com.swerlzenfigmaderlas.swerl.gems.120_normal": [
-            {
-              "name": "Apple Pay",
-              "platform": "onerway_apple_pay"
-            }
-          ]
-        }"""
-        # api_goods_res = """{
-        #   "com.swerlzenfigmaderlas.swerl.gems.120_normal": [
-        #     {
-        #       "name": "Apple Pay",
-        #       "platform": "onerway_apple_pay"
-        #     }
-        #   ],"com.swerlzenfigmaderlas.swerl.gems.220_normal": [
-        #     {
-        #       "name": "Apple Pay",
-        #       "platform": "onerway_apple_pay"
-        #     }
-        #   ]
-        # }"""
-
-        # admin_goods_res = TestSearchValue().test_admin_goods()
-        # api_goods_res = Test_API_Query_goods().test_api_goods()
-
-        admin_json = json.loads(admin_goods_res)
-        api_json = json.loads(TestApiQueryGoods().test_api_goods())
+        admin_json = json.loads(self.admin_goods_res)
+        api_json = json.loads(self.api_goods_res)
 
         messages = []
 

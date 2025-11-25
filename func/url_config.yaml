@@ -17,7 +17,6 @@ Viva_headers:
   Content-Type: 'application/json'
 
 Joymeet_headers:
-  Z-App-Info: 'bundle_id=com.swerlzenfigmaderlas.swerl;version=1.3.0;build=13'
   Z-Client-Id: '4886037297291990'
   Z-Lon: '0'
   Z-Lat: '0'
