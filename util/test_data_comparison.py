@@ -14,15 +14,7 @@ class TestDataComparison:
           "name": "Apple Pay",
           "platform": "onerway_apple_pay"
         }
-      ]
-    }"""
-    api_goods_res = """{
-      "com.swerlzenfigmaderlas.swerl.gems.120_normal": [
-        {
-          "name": "Apple Pay",
-          "platform": "onerway_apple_pay"
-        }
-      ],"com.swerlzenfigmaderlas.swerl.gems.220_normal": [
+      ],"com.swerlzenfigmaderlas.swerl.gems.9999999_normal": [
         {
           "name": "Apple Pay",
           "platform": "onerway_apple_pay"
@@ -31,18 +23,21 @@ class TestDataComparison:
     }"""
 
     # admin_goods_res = TestApiQueryGoods().test_admin_goods()
-    # api_goods_res = TestApiQueryGoods().test_api_goods()
+    api_goods_res = TestApiQueryGoods().test_api_goods()
 
 
-    def test_data_comparison(self):
+    def test_data_comparison(self, api_data=None, admin_data=None):
         """
         对单个项目进行数据对比
             :param admin_data: 管理端配置数据
             :param api_data: API查询数据
             :return: 对比结果
         """
-        admin_json = json.loads(self.admin_goods_res)
-        api_json = json.loads(self.api_goods_res)
+        admin_res = admin_data if admin_data else self.admin_goods_res
+        api_res = api_data if api_data else self.api_goods_res
+
+        admin_json = json.loads(admin_res)
+        api_json = json.loads(api_res)
 
         messages = []
         admin_ids = set(admin_json.keys())
@@ -52,9 +47,9 @@ class TestDataComparison:
         missing_in_api = admin_ids - api_ids
 
         if missing_in_admin:
-            messages.append(f"【当前商品 product_id为：admin当中无当前数据，api存在】: {sorted(missing_in_admin)}")
+            messages.append(f"【当前商品product_id：admin当中无当前数据，api存在】: {sorted(missing_in_admin)}")
         if missing_in_api:
-            messages.append(f"【当前商品 product_id为：api当中无当前数据，admin存在】: {sorted(missing_in_api)}")
+            messages.append(f"【当前商品product_id：api当中无当前数据，admin存在】: {sorted(missing_in_api)}")
 
 
         common_ids = admin_ids & api_ids
@@ -73,7 +68,7 @@ class TestDataComparison:
 
                 if admin_plat != api_plat:
                     messages.append(
-                        f"【product_id ： {pid}】name == '{name}' platform 不一致: "
+                        f"【product_id ： {pid}】渠道name == '{name}' platform 不一致: "
                         f"admin中为：'{admin_plat}' vs api数据为：'{api_plat}'"
                     )
 

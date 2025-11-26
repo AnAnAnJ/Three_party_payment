@@ -24,28 +24,35 @@ def create_items(item_list: ItemList):
     for item in item_list.items:
         # 提取 bundle_id 值
         bundle_id = item.bundle_id
-        # 将bundle_id设置为TestSearchValue的类属性，这样其他地方调用时不需要传递参数
-        TestSearchValue.bundle_id = bundle_id
         # return bundle_id
 
         try:
 
-            test_instance = TestSearchValue(bundle_id)
-            test_instance.test_admin_search()
-            print(f"TestSearchValue{test_instance}")
+            # 1. 获取项目信息
+            search = TestSearchValue(bundle_id)
+            project, _, page_name = search.test_admin_search()
+            print(f"TestSearchValue: project={project}, page_name={page_name}")
 
-            api_goods = TestApiQueryGoods()
-            api_goods.test_login()
-            api_goods.test_api_goods()
-            print("TestApiQueryGoods")
+            if project == "unknown_project":
+                raise Exception(f"Bundle ID {bundle_id} not found in configuration")
 
-            comparison_result = TestDataComparison().test_data_comparison()
-            print("TestDataComparison")
+            # 2. 查询API商品数据
+            api_goods = TestApiQueryGoods(project, bundle_id, page_name)
+            # test_api_goods内部会自动调用test_login获取token
+            api_data = api_goods.test_api_goods()
+            print(f"TestApiQueryGoods: Data retrieved{api_goods},{api_data}")
+
+            # 3. 数据比对
+            # 目前admin数据使用TestDataComparison默认值，后续可扩展传入admin_data
+            comparison = TestDataComparison()
+            comparison_result = comparison.test_data_comparison(api_data=api_data)
+            print(f"TestDataComparison: {comparison_result}")
 
             # 存储处理结果bundle_id
             results.append({
                 "bundle_id": bundle_id,
                 "status": "success" if comparison_result == "✅ 三方支付数据无异常, api返回数据与admin配置一致" else "fail",
+
                 "data_comparison_result": comparison_result
             })
 

@@ -9,18 +9,13 @@ from util.test_admin_search import TestSearchValue
 
 
 class TestApiQueryGoods:
-    # def __init__(self, project, bundle_id, page_name):
-    #     self.project = project
-    #     self.bundle_id = bundle_id
-    #     self.page_name = page_name
-    #     self.Z_App_Info = f'bundle_id={bundle_id};version=1.3.0;build=13' if bundle_id else ""
-    #     self.Z_User_Agent = f"Z-User-Agent: '{page_name}/1.2.0 iOS/18.6.2 (iPhone 14)'" if page_name else ""
 
-    project = TestSearchValue().test_admin_search()[0]
-    bundle_id = TestSearchValue().test_admin_search()[1]
-    page_name = TestSearchValue().test_admin_search()[2]
-    Z_App_Info = f'bundle_id={bundle_id};version=1.3.0;build=13' if bundle_id else ""
-    Z_User_Agent = f"Z-User-Agent: '{page_name}/1.2.0 iOS/18.6.2 (iPhone 14)'" if page_name else ""
+    def __init__(self, project=None, bundle_id=None, page_name=None):
+        self.project = project
+        self.bundle_id = bundle_id
+        self.page_name = page_name
+        self.Z_App_Info = f'bundle_id={bundle_id};version=1.3.0;build=13' if bundle_id else ""
+        self.Z_User_Agent = f"Z-User-Agent: '{page_name}/1.2.0 iOS/18.6.2 (iPhone 14)'" if page_name else ""
 
     # 登录
     def test_login(self):
