@@ -4,6 +4,7 @@ class TestSearchValue:
     def __init__(self, bundle_id=None):
         self.bundle_id = bundle_id
 
+    #admin数据库连接添加好后维护数据
     def test_admin_search(self):
         bundle_id_list = ["com.Drift.cf.ios", "com.swerlzenfigmaderlas.swerl", "com.Drift111.cf.ios"]
 
