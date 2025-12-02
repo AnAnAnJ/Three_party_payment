@@ -33,6 +33,7 @@ class TestDataComparison:
             :param api_data: API查询数据
             :return: 对比结果
         """
+        global processed_lines
         admin_res = admin_data if admin_data else self.admin_goods_res
         api_res = api_data if api_data else self.api_goods_res
 
@@ -80,7 +81,9 @@ class TestDataComparison:
         if not messages:
             result = "✅ 三方支付数据无异常, api返回数据与admin配置一致"
         else:
-            result = "\n" + "\n".join(messages)
-
+            processed_lines = "\n" + "\n".join(messages)
+            result = processed_lines.split('\n')
         print(result)
         return result
+
+

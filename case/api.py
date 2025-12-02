@@ -20,11 +20,9 @@ def create_items(item_list: ItemList):
 
     results = []
 
-    # 遍历所有传入的项目
+    # 遍历所有传入的项目bundle_id
     for item in item_list.items:
-        # 提取 bundle_id 值
         bundle_id = item.bundle_id
-        # return bundle_id
 
         try:
 

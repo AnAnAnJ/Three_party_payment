@@ -10,7 +10,7 @@
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate3
-pip install -r requirements.txt  #pip3 freeze > requirements.txt
+pip install -r requirements.txt 
 ```
 
 ## 目录结构

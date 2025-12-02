@@ -22,15 +22,14 @@ class TestSearchValue:
 
         return "unknown_project", "unknown_bundle", "unknown_page"
 
-    # def test_search_value(self):
-    #     """
-    #     1、查询joy happier数据库信息，根据bundle_id 查询 对应的项目名称（viva / joy meet） 和 包名
-    #     :return:项目名称 / 包名
-    #     """
-    #     sql  = Test_Query_admin_data()
-    #     #待维护对应的项目名称 / 包名 sql  https://admin.joyhappier.com/app_package
-    #     res = sql.read_mysql("admin",f"待维护{self.bundle_id}")
-    #     return res  #返回bundle_id /项目名称 / 包名
+    def test_search_value(self):
+        """
+        1、查询joy happier数据库信息，根据bundle_id 查询 对应的项目名称（viva / joy meet） 和 包名
+        :return:项目名称 / 包名
+        """
+        #待维护对应的项目名称 / 包名 sql  https://admin.joyhappier.com/app_package
+        # res = sql.read_mysql("admin",f"待维护{self.bundle_id}")
+        # return res  #返回bundle_id /项目名称 / 包名
     #
     #
     # def test_admin_goods(self):
