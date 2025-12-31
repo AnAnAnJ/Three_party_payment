@@ -7,14 +7,14 @@ def sql_def(sql_query):
     try:
         conn = pymysql.connect(
             host='12.0.11.90',
-            user='viva_prod_read',
-            password='7EU9DB2HbTPjMqsRi7xxS',
+            user='songjiao_qa_wolkflow_read',
+            password='iABqNaam4p4pCwnHXVCwnHX',
             port=3306,
             charset='utf8',
         )
         with conn.cursor() as cursor:
             cursor.execute(sql_query)
-            data = cursor.fetchone()
+            data = cursor.fetchall()
             if sql_query.strip().upper().startswith('SELECT'):
                 return data
             else:
@@ -32,6 +32,8 @@ def sql_def(sql_query):
 
 
 if __name__ == '__main__':
-    qq = sql_def(sql_query = "SELECT * FROM `viva`.`user` WHERE `email` = 'jillsong0221@gmail.com' LIMIT 5;")
+    qq = sql_def(sql_query = f"SELECT app_project_name,bundle_id,name FROM `joymeet`.`app_package` WHERE `bundle_id`  LIKE  '%com.blaze.chatjoin%';")
     print(qq)
+
+
 

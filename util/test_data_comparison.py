@@ -1,6 +1,7 @@
 import sys
 import os
 
+from util.test_admin_search_goods import TestSearchValue
 from util.test_api_query_goods import TestApiQueryGoods
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -8,23 +9,8 @@ import json
 
 class TestDataComparison:
 
-    admin_goods_res = """{
-      "com.swerlzenfigmaderlas.swerl.gems.120_normal": [
-        {
-          "name": "Apple Pay",
-          "platform": "onerway_apple_pay"
-        }
-      ],"com.swerlzenfigmaderlas.swerl.gems.9999999_normal": [
-        {
-          "name": "Apple Pay",
-          "platform": "onerway_apple_pay"
-        }
-      ]
-    }"""
-
-    # admin_goods_res = TestApiQueryGoods().test_admin_goods()
+    admin_goods_res = TestSearchValue().test_admin_search()  # 修正方法名
     api_goods_res = TestApiQueryGoods().test_api_goods()
-
 
     def test_data_comparison(self, api_data=None, admin_data=None):
         """
@@ -51,7 +37,6 @@ class TestDataComparison:
             messages.append(f"【当前商品product_id：admin当中无当前数据，api存在】: {sorted(missing_in_admin)}")
         if missing_in_api:
             messages.append(f"【当前商品product_id：api当中无当前数据，admin存在】: {sorted(missing_in_api)}")
-
 
         common_ids = admin_ids & api_ids
         for pid in sorted(common_ids):
@@ -85,5 +70,3 @@ class TestDataComparison:
             result = processed_lines.split('\n')
         print(result)
         return result
-
-

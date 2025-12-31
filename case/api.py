@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
-
-from util.test_admin_search import TestSearchValue
+from util.test_admin_search_goods import TestSearchValue
 from util.test_api_query_goods import TestApiQueryGoods
 from util.test_data_comparison import TestDataComparison
 
@@ -72,7 +71,8 @@ def create_items(item_list: ItemList):
     }
 
 
-#http://127.0.0.1:4567/docs#
+#http://127.0.0.1:4568/docs#
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=4567)
+    uvicorn.run(app, host="127.0.0.1", port=4568)  # 改为其他端口如4568
+

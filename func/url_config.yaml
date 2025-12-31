@@ -15,10 +15,12 @@ Viva_headers:
   Z-Language: 'en-us'
   Z-Timezone: 'GMT-06:00'
   Content-Type: 'application/json'
+  Z_Auth_Token: 'E1ZHGWANYHCmMKxuxfiD9h+tgxHCSnnW+KglYtK/ZIxhiYuYcCsWU3yHlnTlTVhaZz8pebYZDs7uJjsMKVKXx8HgGEa6uMS2zmBchcOrdZr601JInImziL9oGZwa1yOE'
 
 Joymeet_headers:
   Z-Client-Id: '4886037297291990'
   Z-Lon: '0'
   Z-Lat: '0'
   Z-Language: 'en-us'
+  Z_Auth_Token: '11111'
 
